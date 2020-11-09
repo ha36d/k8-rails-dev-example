@@ -1,0 +1,13 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: web-alert
+  labels:
+    app: kube-prometheus-stack
+    release: prometheus-operator
+spec:
+  groups:
+  - name: ./http.rules
+    rules:
+    - alert: webSumNumberOfHTTPRequests
+      expr: increase(http_server_requests_total{job="web",path="/",code="200"}[1m]) > 10

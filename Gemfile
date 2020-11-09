@@ -60,5 +60,9 @@ group :development, :test do
   gem 'carrierwave'
 
   gem 'fog-aws'
+
+  gem 'prometheus-client'
+
+  gem 'logstash-logger'
   
 end

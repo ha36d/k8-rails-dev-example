@@ -38,4 +38,17 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  # Optional, Rails sets the default to :info
+  config.log_level = :debug
+
+  # Optional, defaults to '0.0.0.0'
+  config.logstash.host = ENV['LOGSTASH_HOST']
+
+  # Required
+  config.logstash.type = :tcp
+
+  # Required, the port to connect to
+  config.logstash.port = ENV['LOGSTASH_PORT']
+
 end
