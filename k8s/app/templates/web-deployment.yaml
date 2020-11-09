@@ -1,0 +1,71 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: web
+    role: single
+    tier: app
+  name: web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web
+      role: single
+      tier: app
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: web
+        role: single
+        tier: app
+    spec:
+      containers:
+      - args:
+        - bundle
+        - exec
+        - rails
+        - server
+        - -p
+        - "3000"
+        - -b
+        - 0.0.0.0
+        command:
+        - "/usr/src/app/development-entrypoint"
+        env:
+        - name: DATABASE_URL
+          value: sqlite3:/usr/src/app/db/db.sqlite3
+        - name: RACK_ENV
+          value: development
+        - name: RAILS_ENV
+          value: development
+        - name: REDIS_URL
+          value: redis://redis-service:6379
+        - name: SIDEKIQ_CONCURRENCY
+          value: "5"
+        - name: SIDEKIQ_TIMEOUT
+          value: "10"
+        - name: LOGSTASH_HOST
+          value: logstash.default.svc.cluster.local
+        - name: LOGSTASH_PORT
+          value: "1514"
+        image: app
+        imagePullPolicy: "Never"
+        name: web
+        ports:
+        - containerPort: 3000
+        resources: {}
+        stdin: true
+        tty: true
+        volumeMounts:
+        - mountPath: /usr/src/app
+          name: web-data
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes:
+      - name: web-data
+        persistentVolumeClaim:
+          claimName: static-data
+status: {}

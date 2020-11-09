@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  labels:
+    app: redis
+    role: single
+    tier: db
+  name: redis-data-pv
+  labels:
+    type: local
+spec:
+  storageClassName: fast
+  capacity:
+    storage: 300Mi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/tmp/redis"
+status: {}

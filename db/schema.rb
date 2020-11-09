@@ -13,11 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20150508192001) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-  enable_extension "hstore"
-  enable_extension "dblink"
-
   create_table "posts", force: :cascade do |t|
     t.string   "title"
     t.text     "body"
