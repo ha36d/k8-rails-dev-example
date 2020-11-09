@@ -36,7 +36,7 @@ spec:
         - "/usr/src/app/development-entrypoint"
         env:
         - name: DATABASE_URL
-          value: sqlite3:/usr/src/app/db/db.sqlite3
+          value: postgres://postgres:3x4mpl3@postgres:5432/example_development
         - name: RACK_ENV
           value: development
         - name: RAILS_ENV
