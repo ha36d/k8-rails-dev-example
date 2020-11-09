@@ -56,5 +56,9 @@ group :development, :test do
   gem 'spring'
 
   gem 'sqlite3', '~> 1.3.7'
+
+  gem 'carrierwave'
+
+  gem 'fog-aws'
   
 end
