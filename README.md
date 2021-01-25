@@ -1,3 +1,8 @@
+# Example of a how to make a Rails App, Kubernetes friendly
+This is an example of how make a Rails App, Kubernetes friendly. See the tags for levels.
+
+
+
 # Example of a Rails App with Docker Compose for development
 
 This is an example of how I use [Docker](https://docs.docker.com/) and
